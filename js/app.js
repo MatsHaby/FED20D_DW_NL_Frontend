@@ -2,15 +2,28 @@ const form = document.getElementById('form');
 const error = document.getElementById('error');
 const app = document.getElementById('app');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+// buttons
+const btnLogin = document.getElementById('login');
+const btnRegister = document.getElementById('register');
 
+function loginUser() {
+    fetchPostToBackend('login');
+}
+
+btnLogin.addEventListener('click', loginUser);
+
+function createUser() {
+    fetchPostToBackend('register');
+}
+btnRegister.addEventListener('click', createUser);
+
+function fetchPostToBackend(type) {
     const adminUser = {
         email: document.getElementById('email').value,
         password: document.getElementById('password').value,
     };
 
-    fetch('https://fed20d-dw-nl-backend.herokuapp.com/user/login', {
+    fetch(`https://fed20d-dw-nl-backend.herokuapp.com/user/${type}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,13 +41,16 @@ form.addEventListener('submit', (e) => {
         .catch((e) => {
             error.innerHTML = e.message;
         });
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 });
 
-const authenticated = (data) => {
+// what to do when authenticated
+function authenticated(data) {
     app.innerHTML = `
     <div class="" id="prem">
-
-
         <div class="message">
             <p>${data.email}</p>
             <label class="b-contain">
@@ -61,15 +77,15 @@ const authenticated = (data) => {
     });
 
     document.getElementById('logout').addEventListener('click', logOut);
-};
+}
 
-const checkbox = (subscriber) => {
+function checkbox(subscriber) {
     if (subscriber) {
         return 'checked';
     }
-};
+}
 
-const updateSubscription = (token, subscribe) => {
+function updateSubscription(token, subscribe) {
     console.log('toek!', token);
     fetch(`https://fed20d-dw-nl-backend.herokuapp.com/user/${token}`, {
         method: 'PATCH',
@@ -89,13 +105,13 @@ const updateSubscription = (token, subscribe) => {
         .catch((e) => {
             // error.innerHTML = e.message;
         });
-};
+}
 
-const saveLoginSession = (token) => {
+function saveLoginSession(token) {
     localStorage.setItem('token', token);
-};
+}
 
-const isLoggedIn = () => {
+function isLoggedIn() {
     const token = localStorage.getItem('token');
     if (token) {
         fetch(`https://fed20d-dw-nl-backend.herokuapp.com/user/${token}`)
@@ -109,11 +125,11 @@ const isLoggedIn = () => {
                 // error.innerHTML = e.message;
             });
     }
-};
+}
 
-const logOut = () => {
+function logOut() {
     localStorage.removeItem('token');
     location.reload();
-};
+}
 
 isLoggedIn();

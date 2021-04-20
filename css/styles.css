@@ -17,6 +17,7 @@ body {
     justify-content: center;
     width: 100%;
     min-height: 100vh;
+    flex-direction: column;
 }
 
 .home {
@@ -355,4 +356,16 @@ form input[type='submit'] {
 .kl {
     margin-top: 15px;
     border-bottom: 2px #00d400 solid;
+}
+
+#register {
+    background-color: #436d92;
+    margin-top: 20px;
+}
+
+.h1 {
+    font-family: 'Zen Dots', cursive;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
 }
