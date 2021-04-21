@@ -1,11 +1,13 @@
-#THE NEWSLETTER - Frontend
+# THE NEWSLETTER - Frontend
 
 > This is an exercise for the course dynamic webbdevelopment
 
-##About
+## About
+
 This webbsite is built to serve as a frontend for the [Backend](https://github.com/MatsHaby/FED20D_DW_NL_Backend). On this site a user can: register, login and manage their subscriptions status for our newsletter.
 
-##Management
+## Management
+
 This is the repo for the frontend application and is currently deployed to github pages.
 
 You can reach it on the URL: [THE NEWSLETTER - FRONTEND](https://www.matshaby.com/FED20D_DW_NL_Frontend/)
